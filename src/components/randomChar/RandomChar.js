@@ -1,48 +1,32 @@
 import { useState, useEffect } from 'react';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 
 import './randomChar.scss';
 import mjolnir from '../../resources/img/mjolnir.png';
 
 const RandomChar =() => {
-
 	const [char, setChar] = useState({});
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
-
-	const marvelService = new MarvelService();
+	const {loading, error, getCharacter, clearError} = useMarvelService();
 
 	useEffect(() => {
 		updateChar();
 		// const timerId = setInterval(updateChar, 30000);
-		return () => {
-			// clearInterval(timerId);
-		}
+		// return () => {
+		// 	clearInterval(timerId);
+		// }
 	}, []) 
 
 	const onCharLoaded = (char) => {
 		setChar(() => char);
-		setLoading(false);
-	}
-
-	const onCharLoading = () => {
-		setLoading(true);
-	}
-
-	const onError = () => {
-		setLoading(false);
-		setError(true);
 	}
 
 	const updateChar = () => {
+		clearError();
 		const id = Math.floor(Math.random() * (1011400-1011000) + 1011000);
-		onCharLoading();
-		marvelService
-			.getCharacter(id)
-				.then(onCharLoaded)
-				.catch(onError);
+		getCharacter(id)
+			.then(onCharLoaded)
 	}
 
 	const errorMessage = error ? <ErrorMessage/> : null;
@@ -67,7 +51,9 @@ const RandomChar =() => {
 					onClick={updateChar}>
 					<div className="inner">try it</div>
 				</button>
-				<img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
+				<img src={mjolnir} 
+					alt="mjolnir" 
+					className="randomchar__decoration"/>
 			</div>
 		</div>
 	)
@@ -76,7 +62,7 @@ const RandomChar =() => {
 const View = ({char}) => {
 	const {name, description, thumbnail, homepage, wiki} = char;
 	let className = "randomchar__img";
-	thumbnail.indexOf('image_not_available') > -1 ? className = "randomchar__img no-img" : className = "randomchar__img";
+	// thumbnail.indexOf('image_not_available') > -1 ? className = "randomchar__img no-img" : className = "randomchar__img";
 
 	return (
 		<div className="randomchar__block">
