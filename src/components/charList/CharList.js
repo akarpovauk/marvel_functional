@@ -77,6 +77,7 @@ const CharList = (props) => {
 		setPageEnded(false);
 	}
 
+	console.log('render');
 	const itemRefs = useRef([]);
 
 	const focusOnItem = (id) => {
