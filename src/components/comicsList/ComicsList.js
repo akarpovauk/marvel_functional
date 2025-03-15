@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useMarvelService from '../../services/MarvelService';
 import ErrorMessage from '../errorMessage/errorMessage';
 import Spinner from '../spinner/spinner';
 
-
 import './comicsList.scss';
-import uw from '../../resources/img/UW.png';
-import xMen from '../../resources/img/x-men.png';
 
 const ComicsList = (props) => {
 	const [comicsList, setComicsList] = useState([]);
@@ -75,13 +73,13 @@ const ComicsList = (props) => {
 					className='comics__item'
 					key = {i}
 					tabIndex='0'>
-					<a href="#">
+					<Link to={`/comics/${item.id}`}>
 						<img src={item.thumbnail} 
 							alt={item.title}
 							className="comics__item-img"/>
 						<div className="comics__item-name">{item.title}</div>
 						<div className="comics__item-price">{item.price}</div>
-					</a>
+					</Link>
 				</li>
 			)
 		});
@@ -99,64 +97,6 @@ const ComicsList = (props) => {
 
     return (
         <div className="comics__list">
-            {/* <ul className="comics__grid">
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={uw} alt="ultimate war" className="comics__item-img"/>
-                        <div className="comics__item-name">ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB</div>
-                        <div className="comics__item-price">9.99$</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={xMen} alt="x-men" className="comics__item-img"/>
-                        <div className="comics__item-name">X-Men: Days of Future Past</div>
-                        <div className="comics__item-price">NOT AVAILABLE</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={uw} alt="ultimate war" className="comics__item-img"/>
-                        <div className="comics__item-name">ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB</div>
-                        <div className="comics__item-price">9.99$</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={xMen} alt="x-men" className="comics__item-img"/>
-                        <div className="comics__item-name">X-Men: Days of Future Past</div>
-                        <div className="comics__item-price">NOT AVAILABLE</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={uw} alt="ultimate war" className="comics__item-img"/>
-                        <div className="comics__item-name">ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB</div>
-                        <div className="comics__item-price">9.99$</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={xMen} alt="x-men" className="comics__item-img"/>
-                        <div className="comics__item-name">X-Men: Days of Future Past</div>
-                        <div className="comics__item-price">NOT AVAILABLE</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={uw} alt="ultimate war" className="comics__item-img"/>
-                        <div className="comics__item-name">ULTIMATE X-MEN VOL. 5: ULTIMATE WAR TPB</div>
-                        <div className="comics__item-price">9.99$</div>
-                    </a>
-                </li>
-                <li className="comics__item">
-                    <a href="#">
-                        <img src={xMen} alt="x-men" className="comics__item-img"/>
-                        <div className="comics__item-name">X-Men: Days of Future Past</div>
-                        <div className="comics__item-price">NOT AVAILABLE</div>
-                    </a>
-                </li>
-            </ul> */}
 			{errorMessage}
 			{spinner}
 			{items}
