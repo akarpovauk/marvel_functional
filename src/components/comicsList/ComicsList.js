@@ -14,6 +14,7 @@ const ComicsList = (props) => {
 	const [pageEnded, setPageEnded] = useState(false);
 
 	const {loading, error, getAllComics} = useMarvelService();
+	
 
 	useEffect(() => {
 		pageScrollToTop();
