@@ -65,6 +65,7 @@ const CharList = (props) => {
 	}
 
 	const onCharListLoaded = (newCharList) => {
+
 		let ended = false;
 		if(newCharList.length < 9) {
 			ended = true;
@@ -77,7 +78,7 @@ const CharList = (props) => {
 		setPageEnded(false);
 	}
 
-	console.log('render');
+	// console.log('render');
 	const itemRefs = useRef([]);
 
 	const focusOnItem = (id) => {
