@@ -67,17 +67,22 @@ const CharList = (props) => {
 		}
 	}
 
-	const onCharListLoaded = (newCharList) => {
+	const onCharListLoaded = async (newCharList) => {
 
 		let ended = false;
 		if(newCharList.length < 9) {
 			ended = true;
 		}
+		const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+		for (let char of newCharList) {
+            await delay(1000);
+            setCharList(charList => [...charList, char]);
+        }
 
-		setCharList(charList => [...charList, ...newCharList ]);
+		// setCharList(charList => [...charList, ...newCharList ]);
 		setNewItemsLoading(false);
 		setOffset(offset => offset + 9);
-		setCharEnded(charEnded => ended);
+		setCharEnded(ended);
 		setPageEnded(false);
 	}
 
