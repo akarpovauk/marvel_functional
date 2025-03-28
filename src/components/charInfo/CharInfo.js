@@ -27,7 +27,6 @@ const CharInfo =(props) => {
 		clearError();
 		getCharacter(charId)
 			.then(onCharLoaded)
-
 	}
 
 	const onCharLoaded = (char) => {
@@ -47,7 +46,6 @@ const CharInfo =(props) => {
 			{content}
 		</div>
 	)
-
 }
 
 const View = ({char}) => {
@@ -87,12 +85,13 @@ const View = ({char}) => {
 			<ul className="char__comics-list">
 				{comicsSliced.length > 0 ? null : 'Comics info is not available for this character'}
 				{ comicsSliced.map((item, i) => {
-					let comicsId = (item.resourceURI.split('/').pop());
+					// let comicsId = (item.resourceURI.split('/').pop());
 					return (
 						<li key = {i} className="char__comics-item">
-							<Link to={`/comics/${comicsId}`}>
+							{/* <Link to={`/comics/${comicsId}`}>
 								{item.name}
-							</Link>
+							</Link> */}
+							{item}
 						</li>
 					)
 				})}
