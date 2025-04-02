@@ -8,7 +8,7 @@ const AppHeader = () => {
     return (
         <header className="app__header">
             <h1 className="app__title">
-                <Link to='/'>
+                <Link to='/characters'>
                     <span>Marvel</span> information portal
                 </Link>
             </h1>
@@ -16,9 +16,9 @@ const AppHeader = () => {
                 <ul>
                     <li>
 						<NavLink 
-							end 
+							// end
 							style={isActive}
-							to='/'>Characters</NavLink>
+							to='/characters'>Characters</NavLink>
 					</li>
                     /
                     <li>

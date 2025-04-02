@@ -2,6 +2,7 @@ import { useState } from "react";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
+import SearchForm from '../searchForm/SearchForm';
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
 import decoration from '../../resources/img/vision.png';
@@ -22,9 +23,16 @@ const FirstPage = () => {
 					<CharList onCharSelected={onCharSelected}/>
 				</ErrorBoundary>
 
-				<ErrorBoundary>
-					<CharInfo charId={selectedChar}/>
-				</ErrorBoundary>
+				<aside className="char__aside">
+					<ErrorBoundary>
+						<CharInfo charId={selectedChar}/>
+					</ErrorBoundary>
+
+					<ErrorBoundary>
+						<SearchForm/>
+					</ErrorBoundary>
+				</aside>
+
 			</div>
 			<img className="bg-decoration" 
 				src={decoration} 
