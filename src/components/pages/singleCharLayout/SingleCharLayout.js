@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import './singleCharLayout.scss';
 
 const SingleCharLayout = ({data}) => {
@@ -5,6 +6,12 @@ const SingleCharLayout = ({data}) => {
 
 	return (
 		<div className="single-comic">
+			<Helmet>
+				<meta
+					name="description"
+					content={`${name} character information`}/>
+				<title>{name}</title>
+			</Helmet>
 			<img src={thumbnail} 
 				alt={name} 
 				className="single-comic__char-img"/>
